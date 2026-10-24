@@ -1,3 +1,4 @@
+
 <?php
 // Alles wat 1x uitgevoerd moet worden, wordt boven het for statement gezet
 
@@ -24,21 +25,48 @@ while ($opnieuw == "ja") {
     for ($i = 0; $i < 5; $i++) {
         echo "Ronde " . ($i + 1) . PHP_EOL;
 
-$willekeurige_kleur = $kleuren[rand(0, count($kleuren) - 1)];
-// telt hoeveel kleuren er in de array zitten en kiest er willekeurig een uit
-// - 1 indien ik ooit een kleur toevoeg aan de array, anders krijg ik een error
+        $willekeurige_kleur = $kleuren[rand(0, count($kleuren) - 1)];
+        // telt hoeveel kleuren er in de array zitten en kiest er willekeurig een uit
+        // - 1 indien ik ooit een kleur toevoeg aan de array, anders krijg ik een error
 
-echo "Mogelijke kleuren: roze, rood, paars, blauw, groen, oranje" . PHP_EOL;
+        echo "Mogelijke kleuren: roze, rood, paars, blauw, groen, oranje" . PHP_EOL;
 
-$gok = readline("Gok 1 = Welke kleur gok je? ");
+        $gok = readline("Gok 1 = Welke kleur gok je? ");
+
+        while (
+            $gok != "roze" &&
+            $gok != "rood" &&
+            $gok != "paars" &&
+            $gok != "blauw" &&
+            $gok != "groen" &&
+            $gok != "oranje"
+        ) {
+            echo "Deze kleur bestaat niet!" . PHP_EOL;
+            $gok = readline("Kies een geldige kleur: ");
+        }
+        // Deze bovenstaande code zorgt ervoor dat de speler alleen een kleur kan kiezen die in de array staat. Indien dit niet het geval is, krijgt hij/zij een foutmelding en kan hij/zij opnieuw een kleur kiezen.
+
         $zeker = readline("Weet je het zeker? (ja/nee): ");
 
         while ($zeker == "nee") {
             $gok = readline("Kies opnieuw een kleur: ");
+
+            while (
+                $gok != "roze" &&
+                $gok != "rood" &&
+                $gok != "paars" &&
+                $gok != "blauw" &&
+                $gok != "groen" &&
+                $gok != "oranje"
+            ) {
+                echo "Deze kleur bestaat niet!" . PHP_EOL;
+                $gok = readline("Kies een geldige kleur: ");
+            }
+
             $zeker = readline("Weet je het zeker? (ja/nee): ");
         }
 
-if ($zeker == "ja") {
+        if ($zeker == "ja") {
             echo "We controleren je gok!" . PHP_EOL;
 
             if ($gok == $willekeurige_kleur) {
@@ -47,13 +75,40 @@ if ($zeker == "ja") {
             } else {
                 echo "Helaas $naam! Dat was niet de juiste kleur. Je mag nog een keer gokken" . PHP_EOL;
 
-                $gok = readline("Welke kleur gok je?");
+                $gok = readline("Welke kleur gok je? ");
+
+                while (
+                    $gok != "roze" &&
+                    $gok != "rood" &&
+                    $gok != "paars" &&
+                    $gok != "blauw" &&
+                    $gok != "groen" &&
+                    $gok != "oranje"
+                ) {
+                    echo "Deze kleur bestaat niet!" . PHP_EOL;
+                    $gok = readline("Kies een geldige kleur: ");
+                }
+
                 $zeker = readline("Weet je het zeker? (ja/nee): ");
 
                 while ($zeker == "nee") {
                     $gok = readline("Kies opnieuw een kleur: ");
+
+                    while (
+                        $gok != "roze" &&
+                        $gok != "rood" &&
+                        $gok != "paars" &&
+                        $gok != "blauw" &&
+                        $gok != "groen" &&
+                        $gok != "oranje"
+                    ) {
+                        echo "Deze kleur bestaat niet!" . PHP_EOL;
+                        $gok = readline("Kies een geldige kleur: ");
+                    }
+
                     $zeker = readline("Weet je het zeker? (ja/nee): ");
                 }
+
                 if ($zeker == "ja") {
                     if ($gok == $willekeurige_kleur) {
                         echo "Gefeliciteerd $naam! Je hebt het bij de tweede poging goed geraden!";
@@ -70,12 +125,17 @@ if ($zeker == "ja") {
             echo "Je hebt je gok niet bevestigd. Het spel stopt.";
             break;
         }
-}
+    }
 
     echo PHP_EOL . "Je score is : $punten" . PHP_EOL;
 
     $opnieuw = readline("Wil je opnieuw spelen? (ja/nee): ");
-}
-echo "Bedankt voor het spelen $naam";
+    if ($opnieuw == "nee") {
+        echo "Bedankt voor het spelen $naam";
+    }
 
+    // Tot nu toe werken de rondes en kan je opnieuw spelen. Nog toe te voegen:
+    // Highscore
+    // Validatie verbeteren indien slecht invoer
+}
 ?>
