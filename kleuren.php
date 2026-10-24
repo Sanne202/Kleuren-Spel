@@ -6,6 +6,11 @@
 $naam = readline("Hoi! Welkom bij het kleurenspel. Wat is je naam? ");
 $eerste_keer = readline("Ben je hier voor het eerst? (ja/nee): ");
 
+while ($eerste_keer != "ja" && $eerste_keer != "nee") {
+    echo "Ongeldige invoer!" . PHP_EOL;
+    $eerste_keer = readline("Vul ja of nee in: ");
+}
+
 // speler geeft aan of het de eerste keer is dat hij/zij het spel speelt, en krijgt een welkomstbericht
 if ($eerste_keer == "ja") {
     echo "Welkom $naam! Het is de bedoeling dat je uit een paar kleuren gaat raden welke ik in gedachte heb. Simpel toch? Laten we beginnen! ";
@@ -48,6 +53,11 @@ while ($opnieuw == "ja") {
 
         $zeker = readline("Weet je het zeker? (ja/nee): ");
 
+        while ($zeker != "ja" && $zeker != "nee") {
+            echo "Ongeldige invoer!" . PHP_EOL;
+            $zeker = readline("Vul ja of nee in: ");
+        }
+
         while ($zeker == "nee") {
             $gok = readline("Kies opnieuw een kleur: ");
 
@@ -64,6 +74,11 @@ while ($opnieuw == "ja") {
             }
 
             $zeker = readline("Weet je het zeker? (ja/nee): ");
+
+            while ($zeker != "ja" && $zeker != "nee") {
+                echo "Ongeldige invoer!" . PHP_EOL;
+                $zeker = readline("Vul ja of nee in: ");
+            }
         }
 
         if ($zeker == "ja") {
@@ -91,6 +106,11 @@ while ($opnieuw == "ja") {
 
                 $zeker = readline("Weet je het zeker? (ja/nee): ");
 
+                while ($zeker != "ja" && $zeker != "nee") {
+                    echo "Ongeldige invoer!" . PHP_EOL;
+                    $zeker = readline("Vul ja of nee in: ");
+                }
+
                 while ($zeker == "nee") {
                     $gok = readline("Kies opnieuw een kleur: ");
 
@@ -107,6 +127,11 @@ while ($opnieuw == "ja") {
                     }
 
                     $zeker = readline("Weet je het zeker? (ja/nee): ");
+
+                    while ($zeker != "ja" && $zeker != "nee") {
+                        echo "Ongeldige invoer!" . PHP_EOL;
+                        $zeker = readline("Vul ja of nee in: ");
+                    }
                 }
 
                 if ($zeker == "ja") {
@@ -117,12 +142,12 @@ while ($opnieuw == "ja") {
                         echo "Helaas $naam! Je hebt verloren! Het was $willekeurige_kleur" . PHP_EOL;
                     }
                 } else {
-                    echo "Je hebt je gok niet bevestigd. Het spel stopt.";
+                    echo "Je hebt je gok niet bevestigd. De ronde stopt.";
                     break;
                 }
             }
         } else {
-            echo "Je hebt je gok niet bevestigd. Het spel stopt.";
+            echo "Je hebt je gok niet bevestigd. De ronde stopt.";
             break;
         }
     }
@@ -130,6 +155,12 @@ while ($opnieuw == "ja") {
     echo PHP_EOL . "Je score is : $punten" . PHP_EOL;
 
     $opnieuw = readline("Wil je opnieuw spelen? (ja/nee): ");
+
+    while ($opnieuw != "ja" && $opnieuw != "nee") {
+        echo "Ongeldige invoer!" . PHP_EOL;
+        $opnieuw = readline("Wil je opnieuw spelen? (ja/nee): ");
+    }
+
     if ($opnieuw == "nee") {
         echo "Bedankt voor het spelen $naam";
     }
@@ -139,3 +170,4 @@ while ($opnieuw == "ja") {
     // Validatie verbeteren indien slecht invoer
 }
 ?>
+
